@@ -1,12 +1,26 @@
-function InventoryItem({ name, type, quantity, price }) {
+function InventoryItem({ name, type, quantity = 0, price = 0 }) {
+  const lowStockThreshold = 5;
+  const valueThreshold = 500;
   const totalValue = quantity * price;
   return (
     <div>
-      <h2>{`${name} (${type})`}</h2>
-      <p>{quantity < 5 ? `⚠️ Low Stock! ${quantity} remained.` : ""} </p>
-      <p>
-        {totalValue > 1000 ? `💰 High value - consider extra protection!` : ""}
-      </p>
+      <h2>
+        {name} ({type})
+      </h2>
+      {quantity < lowStockThreshold && (
+        <Message>
+          <p>
+            <span>⚠️</span> Low Stock! {quantity} remained
+          </p>
+        </Message>
+      )}
+      {totalValue > valueThreshold && (
+        <Message>
+          <p>
+            <span>💰</span> High value - consider extra protection!
+          </p>
+        </Message>
+      )}
     </div>
   );
 }

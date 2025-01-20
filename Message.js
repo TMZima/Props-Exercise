@@ -1,7 +1,3 @@
 function Message(props) {
-  return (
-    <div>
-      <p>{props.children}</p>
-    </div>
-  );
+  return <div>{props.children}</div>;
 }
